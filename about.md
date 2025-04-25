@@ -3,14 +3,14 @@ title: About
 layout: base.njk
 ---
 
-# About What To Eat With
+# About What To Serve With
 
-Welcome to **What To Eat With** — your daily guide to perfect food pairings.
+Welcome to **What To Serve With** — your daily guide to delicious serving suggestions.
 
-Whether you're wondering what to serve with salmon, chili, or cinnamon rolls, we use AI to bring you simple, tasty ideas based on real cooking knowledge and reader trends.
+Whether you're planning a dinner party or just making weeknight meals, we use AI to bring you simple, satisfying ideas for what to serve alongside your favorite dishes.
 
-This site is 100% automated and updated daily. It was created by a fellow food lover to help busy people make better meals with less guesswork.
+This site is 100% automated and updated daily. It was created by a fellow food lover to help busy people put together well-rounded meals with less guesswork.
 
-Have a food you want us to cover? [Send it here.](https://tally.so/r/wakOD9)
+Have a food you want us to cover? [Send it here.](https://tally.so/r/nrg06M)
 
 Thanks for stopping by!
