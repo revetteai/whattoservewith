@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ title }}</title>
+  <meta name="description" content="Daily food pairing ideas, served fresh" />
+  <link rel="icon" href="/favicon.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6998682919715138" crossorigin="anonymous"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fffaf2;
+      color: #222;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      margin-top: 0;
+    }
+    nav {
+      text-align: center;
+      padding: 0.5rem 1rem;
+      margin-bottom: 1.5rem;
+    }
+    nav a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: #3366cc;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    form.search-form {
+      margin: 0;
+    }
+    input[type="search"] {
+      padding: 0.6rem;
+      font-size: 1rem;
+      width: 75%;
+      max-width: 440px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    main {
+      max-width: 860px;
+      margin: 2rem auto;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #666;
+    }
+    .post-list {
+      list-style: none;
+      padding: 0;
+    }
+    .post-list li {
+      margin-bottom: 1.5rem;
+      padding: 1rem 1.25rem;
+      border-radius: 12px;
+      background: #fdfdfd;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+    }
+    .post-list a {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #222;
+      text-decoration: none;
+    }
+    .post-list a:hover {
+      text-decoration: underline;
+    }
+    .post-date {
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    .sticky-wrapper {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: #fffaf2;
+      transition: all 0.25s ease;
+    }
+    .hero-header {
+      background-image: url('/assets/hero-final.png');
+      background-size: cover;
+      background-position: center;
+      padding: 3rem 1rem 1.5rem;
+      text-align: center;
+      color: #fff;
+      position: relative;
+    }
+    .hero-header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      z-index: 0;
+    }
+    .hero-header > * {
+      position: relative;
+      z-index: 1;
+    }
+    .sticky-wrapper.shrink .hero-header {
+      padding: 1rem 1rem 0.5rem;
+    }
+    .sticky-wrapper.shrink h1 {
+      font-size: 1.5rem;
+    }
+    .sticky-wrapper.shrink p {
+      font-size: 0.9rem;
+    }
+    .sticky-wrapper.shrink input[type="search"] {
+      font-size: 0.9rem;
+      padding: 0.4rem;
+    }
+  </style>
+</head>
+<body>
+  <div id="stickyHeader" class="sticky-wrapper">
+    <div class="hero-header">
+      <h1>What To Eat With</h1>
+      <p>Daily food pairing ideas, served fresh</p>
+    </div>
+    <div style="text-align: center; padding: 0.5rem 1rem 1rem;">
+      <form class="search-form" action="/search/" method="get">
+        <input type="search" name="q" placeholder="Search food pairings..." />
+      </form>
+    </div>
+  </div>
+
+  <nav>
+    <a href="/">Home</a>
+    <a href="/about/">About</a>
+    <a href="/contact/">Contact</a>
+    <a href="/privacy-policy/">Privacy</a>
+  </nav>
+
+  <div style="text-align:center; margin-bottom:2rem;">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-6998682919715138"
+         data-ad-slot="1234567890"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+
+  <main>
+    {{ content | safe }}
+  </main>
+
+  <footer>
+    <p>© {{ "" | year }} What To Eat With</p>
+  </footer>
+
+  <script>
+    const sticky = document.getElementById('stickyHeader');
+    let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    let isShrunk = false;
+    let ticking = false;
+
+    function handleScroll() {
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollingDown = currentScroll > lastScrollTop;
+      const scrollingUp = currentScroll < lastScrollTop;
+
+      if (scrollingDown && currentScroll > 150 && !isShrunk) {
+        sticky.classList.add('shrink');
+        isShrunk = true;
+      } else if (scrollingUp && currentScroll < 100 && isShrunk) {
+        sticky.classList.remove('shrink');
+        isShrunk = false;
+      }
+
+      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(handleScroll);
+        ticking = true;
+      }
+    });
+  </script>
+</body>
+</html>

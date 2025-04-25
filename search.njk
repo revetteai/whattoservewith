@@ -1,0 +1,61 @@
+---
+title: Search
+layout: base.njk
+---
+
+<h2>Search Results</h2>
+<input type="search" id="search-box" placeholder="Search food pairings..." autofocus style="width: 100%; padding: 0.5rem; font-size: 1rem;">
+
+<ul id="results-list" class="post-list" style="margin-top: 2rem;"></ul>
+
+<script src="https://unpkg.com/lunr/lunr.js"></script>
+<script>
+  const searchBox = document.getElementById("search-box");
+  const resultsList = document.getElementById("results-list");
+
+  let index;
+  let documents = [];
+
+  fetch("/search.json")
+    .then(res => res.json())
+    .then(data => {
+      documents = data;
+      index = lunr(function () {
+        this.ref("url");
+        this.field("title");
+        this.field("excerpt");
+
+        documents.forEach(doc => this.add(doc));
+      });
+
+      // Auto-search if q param is present
+      const params = new URLSearchParams(window.location.search);
+      const initialQuery = params.get("q");
+      if (initialQuery) {
+        searchBox.value = initialQuery;
+        performSearch(initialQuery);
+      }
+    });
+
+  function performSearch(query) {
+    resultsList.innerHTML = "";
+    if (query.length < 2 || !index) return;
+
+    const results = index.search(query);
+
+    results.forEach(result => {
+      const match = documents.find(doc => doc.url === result.ref);
+      const li = document.createElement("li");
+      li.innerHTML = `<a href="${match.url}">${match.title}</a><p class="post-date">${match.excerpt}</p>`;
+      resultsList.appendChild(li);
+    });
+
+    if (results.length === 0) {
+      resultsList.innerHTML = `<li><em>No results found.</em></li>`;
+    }
+  }
+
+  searchBox.addEventListener("input", () => {
+    performSearch(searchBox.value.trim());
+  });
+</script>

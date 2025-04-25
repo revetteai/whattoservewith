@@ -1,0 +1,31 @@
+---
+title: What to Eat With
+layout: base.njk
+---
+
+<section style="margin-bottom: 2rem; padding-top: 0;">
+  <div style="margin-bottom: 1rem;">
+    <h2 style="margin: 0;">What to Eat With</h2>
+    <p style="margin: 0.25rem 0 1.5rem;">Find the perfect pairings for your favorite foods.</p>
+  </div>
+
+  {% set latestPost = collections.post | reverse | first %}
+
+  <article style="margin-bottom: 2rem; padding: 1.5rem; border-radius: 1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); background: #fafafa;">
+    <h3><a href="{{ latestPost.url }}">{{ latestPost.data.title }}</a></h3>
+    <p class="post-date">{{ latestPost.date | readableDate }}</p>
+    <div>{{ latestPost.templateContent | safe }}</div>
+  </article>
+
+  <h3 style="margin-top: 2rem;">More Posts</h3>
+  <ul class="post-list">
+    {% for post in collections.post | reverse %}
+      {% if post.url != latestPost.url %}
+        <li>
+          <a href="{{ post.url }}">{{ post.data.title }}</a>
+          <div class="post-date">{{ post.date | readableDate }}</div>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</section>
