@@ -6,6 +6,9 @@ module.exports = function (eleventyConfig) {
   // ✅ Copy static assets
   eleventyConfig.addPassthroughCopy("assets");
 
+  // ✅ Copy robots.txt
+  eleventyConfig.addPassthroughCopy("robots.txt");
+
   // ✅ Blog post collection
   eleventyConfig.addCollection("post", function (collectionApi) {
     const posts = collectionApi.getFilteredByGlob("./posts/*.md");
@@ -29,7 +32,7 @@ module.exports = function (eleventyConfig) {
         { loc: "/privacy-policy/", lastmod: "2025-04-25", changefreq: "monthly", priority: 0.8 },
       ];
       const postsData = posts.map(post => ({
-        loc: post.url, // <-- FIXED: use post.url directly without prepending /posts
+        loc: post.url,
         lastmod: DateTime.fromJSDate(post.date).toISODate(),
         changefreq: "daily",
         priority: 0.9,
