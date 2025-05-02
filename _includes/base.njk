@@ -160,9 +160,13 @@
     </script>
   </div>
 
-  <main>
-    {{ content | safe }}
-  </main>
+<main>
+{% if "/posts/" in page.url %}
+<h1>{{ title }}</h1>
+{% endif %}
+{{ content | safe }}
+</main>
+
 
   <footer>
     <p>© {{ "" | year }} What To Serve With</p>
