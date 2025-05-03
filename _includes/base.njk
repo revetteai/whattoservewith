@@ -165,6 +165,22 @@
 <h1>{{ title }}</h1>
 {% endif %}
 {{ content | safe }}
+{% if "/posts/" in page.url %}
+<h2>More Posts</h2>
+<ul class="post-list">
+  {% if prevPost %}
+    <li>
+      <a href="{{ prevPost.url }}">{{ prevPost.data.title }}</a>
+    </li>
+  {% endif %}
+  {% if nextPost %}
+    <li>
+      <a href="{{ nextPost.url }}">{{ nextPost.data.title }}</a>
+    </li>
+  {% endif %}
+</ul>
+{% endif %}
+
 </main>
 
 
