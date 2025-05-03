@@ -5,13 +5,17 @@ const path = require("path");
 module.exports = function (eleventyConfig) {
   // ✅ Copy static assets
   eleventyConfig.addPassthroughCopy("assets");
-
-  // ✅ Copy robots.txt
   eleventyConfig.addPassthroughCopy("robots.txt");
 
   // ✅ Blog post collection
   eleventyConfig.addCollection("post", function (collectionApi) {
-    const posts = collectionApi.getFilteredByGlob("./posts/*.md");
+    const posts = collectionApi.getFilteredByGlob("./posts/*.md").reverse();
+
+    // Attach neighbors
+    posts.forEach((post, index) => {
+      post.data.prevPost = posts[index - 1] || null;
+      post.data.nextPost = posts[index + 1] || null;
+    });
 
     // ✅ Generate search.json from posts
     eleventyConfig.on("afterBuild", () => {
@@ -24,8 +28,8 @@ module.exports = function (eleventyConfig) {
       fs.writeFileSync("_site/search.json", JSON.stringify(searchData, null, 2));
       console.log("✅ search.json generated");
 
-      // ✅ Generate sitemap.xml dynamically (fixed)
-      const homepage = "https://whattoservewith.netlify.app";
+      // ✅ Generate sitemap.xml dynamically
+      const homepage = "https://whattoeatwith.netlify.app";
       const pages = [
         { loc: "/about/", lastmod: "2025-04-25", changefreq: "monthly", priority: 0.8 },
         { loc: "/contact/", lastmod: "2025-04-25", changefreq: "monthly", priority: 0.8 },
