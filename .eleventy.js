@@ -9,9 +9,10 @@ module.exports = function (eleventyConfig) {
 
   // ✅ Blog post collection
   eleventyConfig.addCollection("post", function (collectionApi) {
-    const posts = collectionApi.getFilteredByGlob("./posts/*.md").reverse();
+    // Sort newest → oldest
+    const posts = collectionApi.getFilteredByGlob("./posts/*.md").sort((a, b) => b.date - a.date);
 
-    // Attach neighbors
+    // Attach neighbors (after sorting)
     posts.forEach((post, index) => {
       post.data.prevPost = posts[index - 1] || null;
       post.data.nextPost = posts[index + 1] || null;
