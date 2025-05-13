@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://whattoservewith.netlify.app/sitemap.xml
+Sitemap: https://whattoservewith.org/sitemap.xml
