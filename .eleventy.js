@@ -30,7 +30,7 @@ module.exports = function (eleventyConfig) {
       console.log("✅ search.json generated");
 
       // ✅ Generate sitemap.xml dynamically
-      const homepage = "https://whattoservewith.netlify.app";
+      const homepage = "https://whattoservewith.org";
       const pages = [
         { loc: "/about/", lastmod: "2025-04-25", changefreq: "monthly", priority: 0.8 },
         { loc: "/contact/", lastmod: "2025-04-25", changefreq: "monthly", priority: 0.8 },
