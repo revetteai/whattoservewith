@@ -6,7 +6,7 @@ module.exports = function (eleventyConfig) {
   // ✅ Copy static assets
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy("robots.txt");
-  eleventyConfig.addPassthroughCopy("_redirects");
+
 
 
   // ✅ Blog post collection
