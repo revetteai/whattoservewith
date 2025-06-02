@@ -169,7 +169,7 @@
   {% set imageIndex = dateHash % images.length %}
   {% set imageFile = images[imageIndex] %}
   <img src="/assets/images/{{ imageFile }}" alt="Food Art" style="max-width:100%;border-radius:12px;margin-bottom:2rem;">
- <div style="text-align:center; margin-bottom:2rem;">
+
 <h1>{{ title }}</h1>
 {% endif %}
 {{ content | safe }}
